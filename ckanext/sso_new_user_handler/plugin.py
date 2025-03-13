@@ -32,8 +32,8 @@ class SsoNewUserHandlerPlugin(plugins.SingletonPlugin):
                     # Create user and add to organization
                     user_dict = self._create_user_from_saml(email, firstname, lastname)
                     if user_dict:
-                        self._add_user_to_organization(user_dict['id'], self.DEFAULT_ORG, self.DEFAULT_ROLE)
-                        log.info(f"Auto-created user {user_dict['name']} and added to {self.DEFAULT_ORG} organization")
+                        self._add_user_to_organization(user_dict['id'], self.get_default_org(), self.get_default_role())
+                        log.info(f"Auto-created user {user_dict['name']} and added to {self.get_default_org()} organization")
                         
                         # Send email notification about new user
                         self._send_new_user_notification(user_dict, firstname, lastname, email)
@@ -173,8 +173,8 @@ A new user has been automatically created in CKAN via SSO:
 Username: {user_dict['name']}
 Full Name: {firstname} {lastname if lastname else ''}
 Email: {email}
-Organization: {self.DEFAULT_ORG}
-Role: {self.DEFAULT_ROLE}
+Organization: {self.get_default_org()}
+Role: {self.get_default_role()}
 
 This user was created automatically by the SSO New User Handler extension.
             """

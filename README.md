@@ -42,11 +42,17 @@ This extension solves the common CKAN SSO workflow issue where users can authent
 
 ## Configuration
 
-The plugin uses these default settings:
-- Default organization: "scion"
-- Default role: "member"
+The plugin supports these configuration options in your CKAN .ini file:
 
-These can be modified in the plugin.py file if needed.
+- `ckanext.sso_new_user_handler.default_org` - The organization to add new users to (default: "scion")
+- `ckanext.sso_new_user_handler.default_role` - The role to assign users in the organization (default: "member")
+- `ckanext.sso_new_user_handler.admin_emails` - Comma-separated list of email addresses to notify when new users are created
+
+Example configuration:
+
+- ckanext.sso_new_user_handler.default_org = scion
+- ckanext.sso_new_user_handler.default_role = member
+- ckanext.sso_new_user_handler.admin_emails = admin@example.com, manager@example.com
 
 ## How It Works
 
@@ -61,10 +67,7 @@ The extension:
 
 Check the CKAN logs for any errors related to user creation or organization assignment.
 
-## License
-
-[License information]
 
 ## Credits
 
-Developed by [Your Organization]
+Developed by Arama Pirika
